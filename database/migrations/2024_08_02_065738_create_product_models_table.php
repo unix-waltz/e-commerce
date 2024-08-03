@@ -15,6 +15,7 @@ return new class extends Migration
             $t->id();
             $t->uuid('slug');
             $t->string('product_name');
+            $t->enum('status', ['active', 'nonactive'])->default('active');
             $t->string('product_category');
             $t->text('product_description');
             $t->string('product_img')->nullable();

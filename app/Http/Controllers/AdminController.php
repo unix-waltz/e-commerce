@@ -46,6 +46,18 @@ return view('Admin.ProductDetail',compact('slug'));
         }
         $v['slug'] = $r->slug;
         $product->update($v);
-        return redirect()->back()->with(['success'=>'success Edit product','msg'=>'your new product has been Updated!']);
+        return redirect()->back()->with(['success'=>'success Edit product','msg'=>'your product has been Updated!']);
+    }
+    function ProductDelete(Product $slug){
+        if(Storage::exists($slug->product_img)) Storage::delete($slug->product_img);
+$slug->delete();
+return redirect('/admin')->with(['success'=>'success Delete product','msg'=>'your product has been Removed!']);
+    }
+    function StatusUpdate($status, $slug){
+        // @dd($status == 'active' ? 'nonactive' : 'active');
+$product = Product::where('slug',$slug)->firstOrFail();
+$product->status =  $status == 'active' ? 'nonactive' : 'active';
+$product->save();
+return redirect()->back()->with(['success'=>'success change product status','msg'=>'your status has been changes!']);
     }
 }
