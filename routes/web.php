@@ -9,6 +9,9 @@ Route::get('/', [CustomerController::class,'index']);
 // admin
 Route::get('/admin', [AdminController::class,'index']);
 Route::post('/admin/create', [AdminController::class,'_Create']);
+Route::get('/admin/product/{slug:slug}', [AdminController::class,'ProductDetail']);
+Route::post('/admin/product/edit', [AdminController::class,'_productedit']);
+// Route::post('/admin/delete/{slug:slug}', [AdminController::class,'ProductDelete']);
 
 
 
