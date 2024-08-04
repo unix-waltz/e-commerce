@@ -25,7 +25,7 @@
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Price</dt>
-                    <dd class="text-gray-700 sm:col-span-2">${{ $slug->product_price }}</dd>
+                    <dd class="text-gray-700 sm:col-span-2">RP.{{number_format($slug->product_price, 0, ',', '.')}} IDR</dd>
                 </div>
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">

@@ -40,7 +40,7 @@
                                     <p class="mt-2">
                                         <span class="sr-only"> Regular Price </span>
 
-                                        <span class="tracking-wider text-gray-900"> ${{ $p->product_price }} USD </span>
+                                        <span class="tracking-wider text-gray-900"> RP.{{number_format($slug->product_price, 0, ',', '.')}} IDR </span>
                                     </p>
                                 </div>
                             </a>
@@ -105,7 +105,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                                     <input type="number" name="product_price" id="price"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                        placeholder="$2999" required>
+                                        placeholder="RP.{{number_format(200000, 0, ',', '.')}}" required>
                                 </div>
                                 <div>
                                     <label for="category"
