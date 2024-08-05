@@ -40,7 +40,7 @@
                                     <p class="mt-2">
                                         <span class="sr-only"> Regular Price </span>
 
-                                        <span class="tracking-wider text-gray-900"> RP.{{number_format($slug->product_price, 0, ',', '.')}} IDR </span>
+                                        <span class="tracking-wider text-gray-900"> RP.{{number_format($p->product_price, 0, ',', '.')}} IDR </span>
                                     </p>
                                 </div>
                             </a>

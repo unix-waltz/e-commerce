@@ -1,6 +1,5 @@
 @extends('Customers.layout')
 @section('c')
-{{$param}}
 
     <section>
         <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -104,7 +103,7 @@
                 <ul class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($products as $p)
                         <li>
-                            <a href="#" class="group block overflow-hidden">
+                            <a href="/product/detail/{{$p->slug}}" class="group block overflow-hidden">
                                 <img src="{{ asset('storage/' . $p->product_img) }}" alt=""
                                     class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 

@@ -39,10 +39,15 @@
             </div>
             <div class="flex flex-1 items-center justify-end gap-2 sm:gap-4">
                 <div class="relative flex h-16 max-w-[300px] flex-1 items-center">
-                    <form action="" method="" role="search" class="flex-1">
+                    <form action="/" method="" role="search" class="flex-1">
                         <label for="SiteSearch" class="sr-only">Search</label>
+                        @if ($view == 'index')
                         <input name="search" type="text" placeholder="{{ $search === '' ? 'Search...' : $search }}" value="{{ old('search', $search) }}" id="SiteSearch"
+                        class="w-full rounded-md border-gray-200 sm:text-base" value="">
+                        @else
+                        <input name="search" type="text" placeholder="Search..." value="search" id="SiteSearch"
                             class="w-full rounded-md border-gray-200 sm:text-base" value="">
+                            @endif
                         <button tabindex="-1" class="sr-only">Submit</button>
                     </form>
                 </div>
@@ -117,6 +122,7 @@
                         aria-hidden="true" role="img">-></span></a></div>
         </section>
     @endguest
+    @auth
     @if (Auth()->user()->role == 'admin')
         <header class="border-b border-gray-200 bg-gray-50">
             <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -150,6 +156,7 @@
             </div>
         </header>
     @endif
+    @endauth
     <div class="">
         @yield('c')
     </div>

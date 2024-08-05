@@ -28,8 +28,9 @@ Route::get('/register', [AuthController::class,'register']);
 Route::post('/register', [AuthController::class,'_register']);
 });
 
-Route::middleware([isAdmin::class,'auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 // Customer
+Route::get('/product/detail/{slug:slug}', [CustomerController::class,'detail']);
 
 });
 
