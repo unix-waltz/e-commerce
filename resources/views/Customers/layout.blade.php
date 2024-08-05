@@ -20,7 +20,7 @@
                         <span aria-hidden="true" role="img"></span>
                     </div>
                 </a>
-                <nav class="hidden md:block">
+                {{-- <nav class="hidden md:block">
                     <ul class="gap-4 flex">
                         <li>
                             <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
@@ -28,14 +28,14 @@
                         </li>
                         <li>
                             <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
-                                href="">Product</a>
+                                href="">Cart</a>
                         </li>
                         <li>
                             <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
-                                href="/">Product</a>
+                                href="/">Wishlist</a>
                         </li>
                     </ul>
-                </nav>
+                </nav> --}}
             </div>
             <div class="flex flex-1 items-center justify-end gap-2 sm:gap-4">
                 <div class="relative flex h-16 max-w-[300px] flex-1 items-center">
@@ -66,7 +66,20 @@
                     <!-- Dropdown menu -->
                     <div id="dropdownDots" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44">
                         <ul class="py-2 text-base text-gray-700 " aria-labelledby="dropdownMenuIconButton">
+                         
                             <li>
+                                <a class="hidden md:block px-4 py-2 hover:bg-gray-100"
+                                    href="/">Products</a>
+                            </li>
+                            <li>
+                                <a class="hidden md:block px-4 py-2 hover:bg-gray-100"
+                                    href="/cart">Cart</a>
+                            </li>
+                            <li>
+                                <a class="hidden md:block px-4 py-2 hover:bg-gray-100"
+                                    href="/wishlist">Wishlist</a>
+                            </li>
+                               <li>
                                 <a href="/logout" class="block px-4 py-2 hover:bg-gray-100">Logout</a>
                             </li>
                         </ul>
@@ -96,15 +109,15 @@
                             <ul class="space-y-4">
                                 <li>
                                     <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
-                                        href="">Product</a>
+                                        href="/">Product</a>
                                 </li>
                                 <li>
                                     <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
-                                        href="">Product</a>
+                                        href="/cart">Cart</a>
                                 </li>
                                 <li>
                                     <a class="inline-flex items-center gap-1 text-base font-medium text-gray-900 hover:opacity-75"
-                                        href="">Product</a>
+                                        href="/wishlist">Wishlist</a>
                                 </li>
                             </ul>
                         </nav>
@@ -157,6 +170,80 @@
         </header>
     @endif
     @endauth
+    @if ($errors->any())
+            
+        <div class="w-1/4 mx-auto">
+            <br>
+
+            <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                </svg>
+                <span class="sr-only">Danger</span>
+                <div>
+                    <span class="font-medium">Failed:</span>
+                    <ul class="mt-1.5 list-disc list-inside">
+                        @foreach ($errors->all() as $e )
+                        <li>{{$e}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        @endif
+
+
+
+        <main class="flex-grow p-6">
+            @if (session('success'))
+                <div class="w-1/5 mx-auto">
+                    <div role="alert" class="rounded-xl border border-gray-100 bg-white p-4">
+                        <div class="flex items-start gap-4">
+                            <span class="text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </span>
+
+                            <div class="flex-1">
+                                <strong class="block font-medium text-gray-900"> {{ session('success') }}</strong>
+
+                                <p class="mt-1 text-sm text-gray-700">{{ session('msg') }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endif
+            @if (session('failed'))
+            <div class="w-1/4 mx-auto">
+                <br>
+    
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-medium">Failed : {{session('failed')}}</span>
+                        <div class="mt-1.5 list-disc list-inside">
+                           {{session('msg')}}
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+            @endif
+        </main>
     <div class="">
         @yield('c')
     </div>

@@ -31,6 +31,10 @@ Route::post('/register', [AuthController::class,'_register']);
 Route::middleware(['auth'])->group(function () {
 // Customer
 Route::get('/product/detail/{slug:slug}', [CustomerController::class,'detail']);
+Route::get('/cart', [CustomerController::class,'cart']);
+Route::post('/cart', [CustomerController::class,'_cart']);
+Route::get('/wishlist', [CustomerController::class,'wishlist']);
+Route::post('/wishlist', [CustomerController::class,'_wishlist']);
 
 });
 

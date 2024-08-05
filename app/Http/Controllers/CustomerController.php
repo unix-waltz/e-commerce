@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartModel as Cart;
 use App\Models\ProductModel as Product;
+use App\Models\WishlistModel as Wishlist;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -57,9 +59,64 @@ class CustomerController extends Controller
     ]);
    }
    function detail(Product $slug){
+    $userId = Auth()->user()->id;
+    $productId = $slug->id;
+    $cart = Cart::where('status', 'pending')
+                ->where('userid', $userId)
+                ->where('productid', $productId)
+                ->first();
+    $availible_cart = $cart ? false : true;
+    $wishlist = Wishlist::where('userid', $userId)
+                        ->where('productid', $productId)
+                        ->first();
+    $availible_wishlist = $wishlist ? false : true;
     return view('Customers.ProductDetail',[
       'data' => $slug,
+      'availible_cart' => $availible_cart,
+      'availible_wishlist' => $availible_wishlist,
       'view' =>'detail',
     ]);
+   }
+   function cart(){
+  
+    return view('Customers.Cart',[
+      'view' =>'Cart',
+    ]);
+   }
+   function _cart(Request $r){
+    $cart = Cart::where('status', 'pending')
+                ->where('userid', Auth()->user()->id)
+                ->where('productid', $r->productid)
+                ->first();
+    if($cart){
+      return redirect()->back()->with(['failed'=>'failed add product to cart','msg'=>'your product exist in the cart!']);
+    }
+    $v = $r->validate([
+      'userid' => 'required',
+      'productid' => 'required',
+    ]);
+    Cart::create($v);
+    return redirect()->back()->with(['success'=>'success add product to cart','msg'=>'your product has been added!']);
+   }
+   function wishlist(){
+  
+    return view('Customers.Wishlist',[
+      'view' =>'Cart',
+    ]);
+   }
+   function _wishlist(Request $r){
+    $cart = Cart::where('status', 'pending')
+                ->where('userid', Auth()->user()->id)
+                ->where('productid', $r->productid)
+                ->first();
+    if($cart){
+      return redirect()->back()->with(['failed'=>'failed add product to cart','msg'=>'your product exist in the cart!']);
+    }
+    $v = $r->validate([
+      'userid' => 'required',
+      'productid' => 'required',
+    ]);
+    Cart::create($v);
+    return redirect()->back()->with(['success'=>'success add product to cart','msg'=>'your product has been added!']);
    }
 }

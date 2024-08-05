@@ -10,4 +10,7 @@ class ProductModel extends Model
     protected $table = 'products';
     protected $guarded = ['id'];
     use HasFactory;
+    public function productCarts(){
+        return $this->hasMany(CartModel::class,'productid','id');
+    }
 }

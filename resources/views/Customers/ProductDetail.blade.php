@@ -1,7 +1,7 @@
 @extends('Customers.layout')
 @section('c')
 <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
-
+{{-- @dd($data->productCarts) --}}
 <section class="py-8 bg-white md:py-16  antialiased">
     <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
       <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
@@ -106,10 +106,13 @@
           </div>
 
           <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-            <a
+            <button
+            @if (!$availible_wishlist)
+               disabled
+             @endif
               href="#"
               title=""
-              class="flex items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
+              class="flex items-center justify-center py-2.5 px-5 text-sm font-medium {{$availible_wishlist ? 'text-gray-900 hover:bg-gray-100':'text-gray-500 bg-gray-100' }}   focus:outline-none bg-white rounded-lg border border-gray-200  hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-100 "
               role="button"
             >
               <svg
@@ -130,12 +133,20 @@
                 />
               </svg>
               Wishtlist
-            </a>
+            </button>
 
-            <a
-              href="#"
+<form action="/cart" method="post">
+  @csrf
+  @method('POST')
+  <input type="hidden" name="userid" value="{{Auth()->user()->id}}">
+  <input type="hidden" name="productid" value="{{$data->id}}">
+            <button
+              type="submit"
+             @if (!$availible_cart)
+               disabled
+             @endif
               title=""
-              class="text-white mt-4 sm:mt-0 bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5  focus:outline-none  flex items-center justify-center"
+              class="text-white mt-4 sm:mt-0 {{$availible_cart ? 'bg-gray-700 hover:bg-gray-800':'bg-gray-300' }} focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5  focus:outline-none  flex items-center justify-center"
               role="button"
             >
               <svg
@@ -157,7 +168,8 @@
               </svg>
 
               Add to cart
-            </a>
+            </button>
+          </form>
           </div>
 
           <hr class="my-6 md:my-8 border-gray-200 " />
