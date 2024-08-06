@@ -11,9 +11,9 @@ class CartModel extends Model
     protected $guarded = ['id'];
     protected $table = 'cart';
     public function cartProduct(){
-        return $this->belongsTo(ProductModel::class,'id','productid');
+        return $this->belongsTo(ProductModel::class,'productid');
     }
     public function cartUser(){
-        return $this->belongsTo(User::class,'id','userid');
+        return $this->belongsTo(User::class,'userid');
     }
 }

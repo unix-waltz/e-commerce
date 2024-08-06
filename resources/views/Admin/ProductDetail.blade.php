@@ -25,7 +25,8 @@
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Price</dt>
-                    <dd class="text-gray-700 sm:col-span-2">RP.{{number_format($slug->product_price, 0, ',', '.')}} IDR</dd>
+                    <dd class="text-gray-700 sm:col-span-2">RP.{{ number_format($slug->product_price, 0, ',', '.') }} IDR
+                    </dd>
                 </div>
 
                 <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
@@ -63,7 +64,7 @@
 
 
                         <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none  focus:ring-gray-50 "
                             type="button">
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                 viewBox="0 0 4 15">
@@ -74,12 +75,12 @@
 
                         <!-- Dropdown menu -->
                         <div id="dropdownDots"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                            <ul class="py-2 text-sm text-gray-700 "
                                 aria-labelledby="dropdownMenuIconButton">
                                 <li>
                                     <a href="/admin/product/status/{{ $slug->status }}/{{ $slug->slug }}"
-                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $slug->status == 'active' ? 'nonactive this product' : 'active this product' }}</a>
+                                        class="block px-4 py-2 hover:bg-gray-100 ">{{ $slug->status == 'active' ? 'nonactive this product' : 'active this product' }}</a>
                                 </li>
                             </ul>
 
@@ -139,39 +140,39 @@
                 <!-- Modal body -->
                 <div class="p-4 md:p-5 space-y-4">
                     <hr>
-                    <section class="bg-white dark:bg-gray-900">
+                    <section class="bg-white ">
                         <div class=" px-4 mx-auto max-w-2xl">
                             <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                                 <div class="sm:col-span-2">
                                     <label for="name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Product
                                         Name</label>
                                     <input type="text" name="product_name" id="name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   "
                                         placeholder="Type product name" value="{{ $slug->product_name }}" required>
                                 </div>
                                 <div class="w-full">
-                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 "
                                         for="user_avatar">Upload
                                         file</label>
                                     <input name="product_img"
-                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50  focus:outline-none "
                                         aria-describedby="user_avatar_help" id="user_avatar" type="file">
-                                    <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="user_avatar_help">A
+                                    <div class="mt-1 text-sm text-gray-500 " id="user_avatar_help">A
                                         Product Image</div>
                                 </div>
                                 <div class="w-full">
                                     <label for="price"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Price</label>
                                     <input type="number" name="product_price" id="price"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5    "
                                         placeholder="$2999" value="{{ $slug->product_price }}" required>
                                 </div>
                                 <div>
                                     <label for="category"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Category</label>
                                     <select id="category" name="product_category"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5    ">
                                         <option selected="Fashion">Fashion</option>
                                         <option value="Electronic">Electronic</option>
                                         <option value="Gadged">Gadged</option>
@@ -180,13 +181,13 @@
                                 </div>
                                 <div>
                                     <label for="quantity-input"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Choose
                                         quantity/stock:</label>
                                     <div class="relative flex items-center max-w-[8rem]">
                                         <button type="button" id="decrement-button"
                                             data-input-counter-decrement="quantity-input"
-                                            class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true"
+                                            class="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
+                                            <svg class="w-3 h-3 text-gray-900 " aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
                                                 <path stroke="currentColor" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
@@ -194,12 +195,12 @@
                                         </button>
                                         <input type="text" id="quantity-input" data-input-counter
                                             name="product_quantity" aria-describedby="helper-text-explanation"
-                                            class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="999" value="{{ $slug->product_quantity }}" required />
+                                            class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 "
+                                            placeholder="999" value="" required />
                                         <button type="button" id="increment-button"
                                             data-input-counter-increment="quantity-input"
-                                            class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                            <svg class="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true"
+                                            class="bg-gray-100  hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
+                                            <svg class="w-3 h-3 text-gray-900 " aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                                 <path stroke="currentColor" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
@@ -209,9 +210,9 @@
                                 </div>
                                 <div class="sm:col-span-2">
                                     <label for="description"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900 ">Description</label>
                                     <textarea id="description" rows="8" name="product_description"
-                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500    "
                                         placeholder="Your description here" required>{{ $slug->product_description }}</textarea>
                                 </div>
                             </div>

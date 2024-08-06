@@ -77,12 +77,27 @@ class CustomerController extends Controller
       'view' =>'detail',
     ]);
    }
-   function cart(){
-  
-    return view('Customers.Cart',[
-      'view' =>'Cart',
+   public function cart() {
+    $cart_pending = Cart::where('status', 'pending')
+        ->where('userid', Auth()->user()->id)
+        ->get();
+        // @dd($cart_pending);
+
+    $totalQuantity = $cart_pending->sum('quantity');
+    $totalTypes = $cart_pending->count();
+    $totalPrice = $cart_pending->sum(function($cart) {
+        return $cart->quantity * $cart->cartProduct->product_price;
+    });
+
+    return view('Customers.Cart', [
+        'view' => 'Cart',
+        'c_pending' => $cart_pending,
+        'totalQuantity' => $totalQuantity,
+        'totalTypes' => $totalTypes,
+       'totalPrice' => $totalPrice
     ]);
-   }
+}
+
    function _cart(Request $r){
     $cart = Cart::where('status', 'pending')
                 ->where('userid', Auth()->user()->id)
@@ -119,4 +134,22 @@ class CustomerController extends Controller
     Cart::create($v);
     return redirect()->back()->with(['success'=>'success add product to cart','msg'=>'your product has been added!']);
    }
+   public function cart_update_quantity(Request $request) {
+    $cart = Cart::find((int) $request->cartid);
+
+    if ($request->type == 'increment') {
+        $cart->quantity++;
+    } elseif ($request->type == 'decrement' && $cart->quantity > 1) {
+        $cart->quantity--;
+    }
+
+    $cart->save();
+    return redirect()->back();
+}
+public function cart_update_remove(Request $request) {
+  $cart = Cart::find((int) $request->cartid);
+  $cart->delete();
+  return redirect()->back();
+}
+
 }

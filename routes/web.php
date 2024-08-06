@@ -33,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/product/detail/{slug:slug}', [CustomerController::class,'detail']);
 Route::get('/cart', [CustomerController::class,'cart']);
 Route::post('/cart', [CustomerController::class,'_cart']);
+Route::post('/update/cart-quantity', [CustomerController::class,'cart_update_quantity']);
+Route::post('/update/cart-remove', [CustomerController::class,'cart_update_remove']);
 Route::get('/wishlist', [CustomerController::class,'wishlist']);
 Route::post('/wishlist', [CustomerController::class,'_wishlist']);
 
