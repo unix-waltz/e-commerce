@@ -88,13 +88,31 @@ class CustomerController extends Controller
     $totalPrice = $cart_pending->sum(function($cart) {
         return $cart->quantity * $cart->cartProduct->product_price;
     });
-
+    // midtrans
+    \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+    \Midtrans\Config::$isProduction = false;
+    \Midtrans\Config::$isSanitized = true;
+    \Midtrans\Config::$is3ds = true;
+    
+    $params = [
+      'transaction_details' => [
+          'order_id' => rand(),
+          'gross_amount' => (int)$totalPrice,
+      ],
+      'customer_detail' => [
+        "name" => Auth()->user()->name,
+        "email" => Auth()->user()->email,
+      ]
+      ];
+    
+    $snapToken = \Midtrans\Snap::getSnapToken($params);
     return view('Customers.Cart', [
         'view' => 'Cart',
         'c_pending' => $cart_pending,
         'totalQuantity' => $totalQuantity,
         'totalTypes' => $totalTypes,
-       'totalPrice' => $totalPrice
+       'totalPrice' => $totalPrice,
+       'snapToken' => $snapToken,
     ]);
 }
 
@@ -151,5 +169,64 @@ public function cart_update_remove(Request $request) {
   $cart->delete();
   return redirect()->back();
 }
+// public function checkout(Request $r){
+// logic
 
+// midtrans
+// \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+// \Midtrans\Config::$isProduction = false;
+// \Midtrans\Config::$isSanitized = true;
+// \Midtrans\Config::$is3ds = true;
+
+// $params = [
+//   'transaction_details' => [
+//       'order_id' => rand(),
+//       'gross_amount' => (int)$r->total_price,
+//   ],
+//   'customer_detail' => [
+//     "name" => Auth()->user()->name,
+//     "email" => Auth()->user()->email,
+//   ]
+//   ];
+
+// $snapToken = \Midtrans\Snap::getSnapToken($params);
+// }
+function _checkout($status){
+  if($status == 'success'){
+    $cart = Cart::where('status', 'pending')
+    ->where('userid', Auth()->user()->id)->get();
+    foreach ($cart as $cartItem) {
+      $cartItem->status ='success';
+      $cartItem->save();
+      $product = Product::find($cartItem->productid);
+      if ($product) {
+          $product->product_quantity -= $cartItem->quantity;
+          $product->save();
+      }
+  }
+    return redirect('/invoice')->with(['success'=>'success checkout product','msg'=>'your product checkout is successfully!']);
+  }
+  if($status == 'failed'){
+
+    $cart = Cart::where('status', 'pending')
+    ->where('userid', Auth()->user()->id)->get();
+    foreach ($cart as $cartItem) {
+      $cart->status ='failed';
+      $cart->save();
+      // $product = Product::find($cartItem->productid);
+      // if ($product) {
+      //     $product->product_quantity -= $cartItem->quantity;
+      //     $product->save();
+      // }
+  }
+
+    return redirect('/invoice')->with(['failed'=>'failed checkout product','msg'=>'your product checkout is failed!']);
+  }
+}
+public function invoice(){
+  $cart = Cart::where('status', '!=', 'pending')
+    ->where('userid', Auth()->user()->id)->get();
+
+  return view('Customers.Invoice',['view' => 'invoice',"cart" => $cart]);
+}
 }

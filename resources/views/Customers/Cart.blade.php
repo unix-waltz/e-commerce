@@ -14,7 +14,6 @@
                     <div class="mt-8">
                         <ul class="space-y-4">
                             @foreach ($c_pending as $c)
-                            
                                 <li class="flex items-center gap-4">
                                     <img src="{{ asset('storage/' . $c->cartProduct->product_img) }}" alt=""
                                         class="size-20 rounded object-cover" />
@@ -25,7 +24,8 @@
                                         <dl class="mt-0.5 space-y-px text-[15px] text-gray-600">
                                             <div>
                                                 <dt class="inline">Price:</dt>
-                                                <dd class="inline"> RP{{ number_format($c->cartProduct->product_price, 0, ',', '.') }}
+                                                <dd class="inline">
+                                                    RP{{ number_format($c->cartProduct->product_price, 0, ',', '.') }}
                                                     IDR</dd>
                                             </div>
                                             <div class="text-[13px]">
@@ -114,19 +114,19 @@
                                 <dl class="space-y-0.5 text-sm text-gray-700">
                                     <div class="flex justify-between">
                                         <dt>Quantity Total :</dt>
-                                        <dd>{{$totalQuantity}}</dd>
+                                        <dd>{{ $totalQuantity }}</dd>
                                     </div>
 
                                     <div class="flex justify-between">
                                         <dt>Product Types</dt>
-                                        <dd>{{$totalTypes}}</dd>
+                                        <dd>{{ $totalTypes }}</dd>
                                     </div>
                                     <div class="flex justify-between !text-base font-medium">
                                         <dt>Total Price</dt>
                                         <dd>RP{{ number_format($totalPrice, 0, ',', '.') }}
                                             IDR</dd>
                                     </div>
-                                </dl> 
+                                </dl>
 
                                 {{-- <div class="flex justify-end">
                                     <span
@@ -139,13 +139,13 @@
 
                                         <p class="whitespace-nowrap text-xs">2 Discounts Applied</p>
                                     </span>
-                                </div>--}}
-
+                                </div> --}}
+                                {{-- {{$snapToken}} --}}
                                 <div class="flex justify-end">
-                                    <a href="#"
+                                    <button id="pay-button"
                                         class="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600">
                                         Checkout
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -154,4 +154,26 @@
             </div>
         </div>
     </section>
+    {{-- scripts --}}
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}">
+    </script>
+    <script type="text/javascript">
+        document.getElementById('pay-button').onclick = function() {
+            // SnapToken acquired from previous step
+            snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    window.location.href = "{{ route('checkout_proccess', ['status' => 'success']) }}";
+                },
+                // Optional
+                onPending: function(result) {
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                },
+                // Optional
+                onError: function(result) {
+                    document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                }
+            });
+        };
+    </script>
 @endsection

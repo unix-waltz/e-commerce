@@ -37,6 +37,9 @@ Route::post('/update/cart-quantity', [CustomerController::class,'cart_update_qua
 Route::post('/update/cart-remove', [CustomerController::class,'cart_update_remove']);
 Route::get('/wishlist', [CustomerController::class,'wishlist']);
 Route::post('/wishlist', [CustomerController::class,'_wishlist']);
+// Route::post('/checkout', [CustomerController::class,'checkout']);
+Route::get('/invoice', [CustomerController::class,'invoice']);
+Route::get('/checkout/{status}', [CustomerController::class,'_checkout'])->name('checkout_proccess');
 
 });
 
