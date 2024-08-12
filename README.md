@@ -57,12 +57,10 @@ MIDTRANS_CLIENT_KEY=your_midtrans_client_key</code></pre>
 <ul>
     <li>
         <strong>Video Demo:</strong><br>
- [Screencast from 2024-08-12 14-18-48.webm](https://github.com/user-attachments/assets/f682bd07-5d6c-4c38-8b63-17bf0f626a5f)
- <video controls style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <video controls style="max-width: 100%; height: auto; margin-bottom: 10px;">
             <source src="https://github.com/user-attachments/assets/f682bd07-5d6c-4c38-8b63-17bf0f626a5f" type="video/webm">
             Your browser does not support the video tag.
         </video>
-        
     </li>
     <li>
         <strong>Screenshots:</strong><br>
@@ -74,6 +72,7 @@ MIDTRANS_CLIENT_KEY=your_midtrans_client_key</code></pre>
         <img src="https://github.com/user-attachments/assets/8cc2abe9-d33c-4ea3-b4f5-b05892fc20bc" alt="Screenshot from 2024-08-12 14-18-41" style="max-width: 100%; height: auto;">
     </li>
 </ul>
+
 
 
 <h2>Contribution</h2>
