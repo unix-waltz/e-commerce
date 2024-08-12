@@ -55,22 +55,26 @@ MIDTRANS_CLIENT_KEY=your_midtrans_client_key</code></pre>
 
 <h2>Preview</h2>
 <ul>
-<li>
-    Video Demo:
-[Uploading Screencast from 2024-08-12 14-18-48.webm…]()
-
-</li>
-<li>Screenshots :
-![Screenshot from 2024-08-12 14-15-35](https://github.com/user-attachments/assets/85221f3c-770e-4cd6-8b46-6fc255c0919a)
-![Screenshot from 2024-08-12 14-15-48](https://github.com/user-attachments/assets/d5c4f574-7f2e-49e2-96f1-0e952820d8eb)
-![Screenshot from 2024-08-12 14-15-58](https://github.com/user-attachments/assets/c0b725ef-6cd2-4414-9a40-7d801b5b7624)
-![Screenshot from 2024-08-12 14-17-31](https://github.com/user-attachments/assets/d5163d95-bd62-4a52-adec-0a5a9c66a3cb)
-![Screenshot from 2024-08-12 14-18-16](https://github.com/user-attachments/assets/97261a6a-9f05-4932-b4dd-16ee1193979b)
-![Screenshot from 2024-08-12 14-18-41](https://github.com/user-attachments/assets/8cc2abe9-d33c-4ea3-b4f5-b05892fc20bc)
-
- 
-</li>
+    <li>
+        <strong>Video Demo:</strong><br>
+ [Screencast from 2024-08-12 14-18-48.webm](https://github.com/user-attachments/assets/f682bd07-5d6c-4c38-8b63-17bf0f626a5f)
+ <video controls style="max-width: 100%; height: auto; margin-bottom: 10px;">
+            <source src="https://github.com/user-attachments/assets/f682bd07-5d6c-4c38-8b63-17bf0f626a5f" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        
+    </li>
+    <li>
+        <strong>Screenshots:</strong><br>
+        <img src="https://github.com/user-attachments/assets/85221f3c-770e-4cd6-8b46-6fc255c0919a" alt="Screenshot from 2024-08-12 14-15-35" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/d5c4f574-7f2e-49e2-96f1-0e952820d8eb" alt="Screenshot from 2024-08-12 14-15-48" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/c0b725ef-6cd2-4414-9a40-7d801b5b7624" alt="Screenshot from 2024-08-12 14-15-58" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/d5163d95-bd62-4a52-adec-0a5a9c66a3cb" alt="Screenshot from 2024-08-12 14-17-31" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/97261a6a-9f05-4932-b4dd-16ee1193979b" alt="Screenshot from 2024-08-12 14-18-16" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+        <img src="https://github.com/user-attachments/assets/8cc2abe9-d33c-4ea3-b4f5-b05892fc20bc" alt="Screenshot from 2024-08-12 14-18-41" style="max-width: 100%; height: auto;">
+    </li>
 </ul>
+
 
 <h2>Contribution</h2>
 <p>Feel free to fork this repository, submit issues, or make pull requests to contribute to the project.</p>
