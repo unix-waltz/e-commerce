@@ -18,8 +18,8 @@ This is an elegant and modern e-commerce platform built to provide a seamless on
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
+<li>Clone the repo:
+    <pre><code>
    git clone https://github.com/unix-waltz/e-commerce.git
     </code></pre>
 </li>
