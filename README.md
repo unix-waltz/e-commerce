@@ -1,7 +1,8 @@
 # E-Commerce Platform
 
 This is an elegant and modern e-commerce platform built to provide a seamless online shopping experience. The project focuses on delivering a clean and responsive interface, along with secure payment processing.
-<h2>Preview</h2>
+##Preview
+ [Screencast from 2024-08-12 14-18-48.webm](https://github.com/user-attachments/assets/f682bd07-5d6c-4c38-8b63-17bf0f626a5f)
 <ul>
     <li>
         <strong>Video Demo:</strong><br>
